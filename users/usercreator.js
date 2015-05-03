@@ -7,10 +7,14 @@ function createUser(execlib,ParentUser){
     StreamSinkBunch = execSuite.StreamSinkBunch,
     StatePathListener = execSuite.StatePathListener;
 
+  function userStateFiltorCtor(){
+    return new StatePathListener(['time']);
+  };
+
   function User(prophash){
     ParentUser.call(this,prophash);
   }
-  ParentUser.inherit(User,require('../methoddescriptors/user'));
+  ParentUser.inherit(User,require('../methoddescriptors/user'),userStateFiltorCtor);
 
   return User;
 }

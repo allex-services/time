@@ -17,6 +17,7 @@ function createTimeService(execlib,ParentServicePack){
   TimeService.prototype.tick = function(){
     if(this.state && !this.state.get('closed')){
       this.state.set('time',Date.now());
+      console.log('tick!');
       lib.runNext(this.tick.bind(this),1000);
     }
   };
