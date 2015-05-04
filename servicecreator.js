@@ -11,14 +11,19 @@ function createTimeService(execlib,ParentServicePack){
 
   function TimeService(prophash){
     ParentService.call(this,prophash);
+    this.start = Date.now();
+    this.ticks = 0;
     this.tick();
   }
   ParentService.inherit(TimeService,factoryCreator);
   TimeService.prototype.tick = function(){
     if(this.state && !this.state.get('closed')){
-      this.state.set('time',Date.now());
-      console.log('tick!');
-      lib.runNext(this.tick.bind(this),1000);
+      var currtime = Date.now();
+      this.state.set('time',currtime);
+      this.ticks++;
+      var nextin = this.start+this.ticks*1000-currtime;
+      console.log('tick! next in',nextin);
+      lib.runNext(this.tick.bind(this),nextin);
     }
   };
   

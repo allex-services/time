@@ -12,6 +12,9 @@ function createUserSink(execlib,ParentSink){
     //TODO: create your filter here
     return null;
   };
+  UserSink.prototype.onState = function(item){
+    console.log('Time service sink',item);
+  };
   
   return UserSink;
 }

@@ -4,11 +4,22 @@ function createUser(execlib,ParentUser){
     ParentUser = execlib.execSuite.ServicePack.Service.prototype.userFactory.get('user');
   }
   var execSuite = execlib.execSuite,
-    StreamSinkBunch = execSuite.StreamSinkBunch,
+    StateSource = execSuite.StateSource,
     StatePathListener = execSuite.StatePathListener;
 
+  function MSS(){
+    StateSource.apply(this,arguments);
+  }
+  execlib.lib.inherit(MSS,StateSource);
+  MSS.prototype.onStream = function(item){
+    console.log('MSS onStream',item);
+  };
+  MSS.prototype.handleStreamItem = function(item){
+    console.log('MSS item',item);
+  };
+
   function userStateFiltorCtor(){
-    return new StatePathListener(['time']);
+    return StateSource.chain([new StatePathListener(['time']),new MSS]);
   };
 
   function User(prophash){
