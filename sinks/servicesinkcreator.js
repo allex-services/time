@@ -8,10 +8,6 @@ function createServiceSink(execlib,ParentSink){
     ParentSink.call(this,prophash,client);
   }
   ParentSink.inherit(ServiceSink,require('../methoddescriptors/serviceuser'));
-  ServiceSink.prototype.createStateFilter = function(){
-    //TODO: create your filter here
-    return null;
-  };
   
   return ServiceSink;
 }
