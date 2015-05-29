@@ -15,9 +15,6 @@
     "Service",
     "Time"
   ],
-  "dependencies" : {
-    "allexcore": "git+ssh://git@gitlab.hers.rs/allex/core"
-    },
   "author": "HERS Belgrade",
   "license": "ISC"
 }
