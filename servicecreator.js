@@ -1,4 +1,5 @@
 function createTimeService(execlib,ParentServicePack){
+  'use strict';
   var lib = execlib.lib;
   var ParentService = ParentServicePack.Service;
 

@@ -1,4 +1,5 @@
 function createUserSink(execlib,ParentSink){
+  'use strict';
 
   if(!ParentSink){
     ParentSink = execlib.execSuite.ServicePack.SinkMap.get('user');
