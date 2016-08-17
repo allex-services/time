@@ -1,7 +1,6 @@
-function createTimeService(execlib,ParentServicePack){
+function createTimeService(execlib,ParentService){
   'use strict';
   var lib = execlib.lib;
-  var ParentService = ParentServicePack.Service;
 
   function factoryCreator(parentFactory){
     return {
