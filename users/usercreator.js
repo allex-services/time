@@ -14,9 +14,7 @@ function createUser(execlib,ParentUser){
   execlib.lib.inherit(MSS,StateSource);
   MSS.prototype.onStream = function(item){
     console.log('MSS onStream',item);
-  };
-  MSS.prototype.handleStreamItem = function(item){
-    console.log('MSS item',item);
+    return StateSource.prototype.onStream.call(this, item);
   };
 
   function userStateFiltorCtor(){
@@ -27,6 +25,11 @@ function createUser(execlib,ParentUser){
     ParentUser.call(this,prophash);
   }
   ParentUser.inherit(User,require('../methoddescriptors/user'),userStateFiltorCtor);
+
+  User.prototype.setActive = function (active, defer) {
+    this.__service.setActive(active);
+    defer.resolve(true);
+  };
 
   return User;
 }
